@@ -18,6 +18,6 @@ if prompt := st.chat_input():
     st.chat_message("user").write(prompt)
     response=client.chat.completions.create(model="deepseek-chat",
         messages=st.session_state.messages)
-    msg=response.choices[0].message.content
+    msg=response.choices[0].message
     st.session_state.messages.append(msg)
-    st.chat_message("assistant").write(msg)
+    st.chat_message("assistant").write(msg.content)
