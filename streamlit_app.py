@@ -11,9 +11,8 @@ if "messages" not in st.session_state:
 
 for msg in st.session_state.messages:
     st.chat_message(msg["role"]).write(msg["content"])
-
+client = OpenAI(api_key="sk-c4b8c501c53843909356cb43e3e42797", base_url="https://api.deepseek.com")
 if prompt := st.chat_input():
-    client = OpenAI(api_key="sk-c4b8c501c53843909356cb43e3e42797", base_url="https://api.deepseek.com")
     st.session_state.messages.append({"role":"user","content":prompt})
     st.chat_message("user").write(prompt)
     response=client.chat.completions.create(
