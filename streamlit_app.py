@@ -21,6 +21,6 @@ if prompt := st.chat_input():
         messages=st.session_state.messages,
         stream=False
                                             )
-    msg=response.choices[0].message
+    msg=response.choices[0].message.content
     st.session_state.messages.append(msg)
-    st.chat_message("assistant").write(msg.content)
+    st.chat_message("assistant").write(msg)
