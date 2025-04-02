@@ -10,7 +10,7 @@ if "messages" not in st.session_state:
     st.session_state["messages"]=[{"role":"assistant","content":"How can I help you?"}]
 
 for msg in st.session_state.messages:
-    st.chat_message(msg[0]).write(msg["content"])
+    st.chat_message(msg["role"]).write(msg["content"])
 client = OpenAI(api_key="sk-c4b8c501c53843909356cb43e3e42797", base_url="https://api.deepseek.com")
 if prompt := st.chat_input():
     st.session_state.messages.append({"role":"user","content":prompt})
@@ -20,6 +20,6 @@ if prompt := st.chat_input():
         messages=st.session_state.messages,
         stream=False
                                             )
-    msg=response.choices[0].message.content
+    msg=response.choices[0].message
     st.session_state.messages.append(msg)
-    st.chat_message("assistant").write(msg)
+    st.chat_message("assistant").write(msg.content)
