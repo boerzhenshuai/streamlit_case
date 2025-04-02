@@ -21,5 +21,6 @@ if prompt := st.chat_input():
         stream=False
                                             )
     msg=response.choices[0].message
+    print(msg)
     st.session_state.messages.append(msg)
     st.chat_message("assistant").write(msg.content)
